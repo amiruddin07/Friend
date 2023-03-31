@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        form {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f5f5f5;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+
+    <script>
+
+        window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'hi-IN'; // set the recognition language to Hindi
+
+        function readOut(message) {
+            const speech = new SpeechSynthesisUtterance();
+            speech.lang = 'hi-IN'; // set the speech synthesis language to Hindi
+            speech.text = message;
+            speech.volume = 1;
+            speech.rate = 1; // set the speech rate to a slower value (default is 1)
+            speech.pitch = 0.8; // set the speech pitch to a deeper value (default is 1)
+            window.speechSynthesis.speak(speech);
+            console.log("speaking out");
+        }
+
+
+
+        function submitForm(event) {
+            const nameInput = document.getElementById('name');
+
+            if (nameInput.value.trim() !== 'Professor') {
+                // alert('You must be a Professor to submit this form!');
+                readOut("Access denied")
+                event.preventDefault(); // Prevent form submission
+            }else{
+                readOut("Welcome Professor")
+                window.location.href = "https://amiruddin07.github.io/welcome/";
+            }
+            
+        }
+    </script>
+</head>
+
+<body>
+        <label for="name">Please Enter Your Name:</label>
+        <input type="text" id="name" name="name" required>
+        <!-- <a href="https://amiruddin07.github.io/welcome/"> -->
+            <input type="submit" value="Submit" onclick="submitForm(event)">
+        <!-- </a> -->
+</body>
+</html>
