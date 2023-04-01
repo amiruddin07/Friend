@@ -67,29 +67,32 @@
             console.log("speaking out");
         }
 
-
-
         function submitForm(event) {
             const nameInput = document.getElementById('name');
 
-            if (nameInput.value.trim() !== 'Professor') {
-                // alert('You must be a Professor to submit this form!');
+            var a = "Professor"
+            var b = "Sumo"
+            if (nameInput.value.trim() !== a && nameInput.value.trim() !== b) {
                 readOut("Access denied")
                 event.preventDefault(); // Prevent form submission
-            }else{
+            } else if (nameInput.value.trim() == a) {
                 readOut("Welcome Professor")
                 window.location.href = "https://amiruddin07.github.io/welcome/";
+            } else if (nameInput.value.trim() == b) {
+                readOut("Welcome Sumo")
+                window.location.href = "https://amiruddin07.github.io/welcome/";
             }
-            
+
         }
     </script>
 </head>
 
 <body>
-        <label for="name">Please Enter Your Name:</label>
-        <input type="text" id="name" name="name" required>
-        <!-- <a href="https://amiruddin07.github.io/welcome/"> -->
-            <input type="submit" value="Submit" onclick="submitForm(event)">
-        <!-- </a> -->
+    <label for="name">Please Enter Your Name:</label>
+    <input type="text" id="name" name="name" required>
+    <!-- <a href="https://amiruddin07.github.io/welcome/"> -->
+    <input type="submit" value="Submit" onclick="submitForm(event)">
+    <!-- </a> -->
 </body>
+
 </html>
